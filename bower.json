@@ -1,17 +1,17 @@
 {
   "name": "gae-init",
   "dependencies": {
-    "bootstrap": "~3",
+    "bootstrap": "v4-dev",
     "font-awesome": "~4",
     "jquery": "~2",
     "moment": "~2"
   },
   "overrides": {
     "bootstrap": {
-      "main": ["less/**", "fonts/*", "js/*"]
+      "main": ["scss/**", "dist/js/**"]
     },
     "font-awesome": {
-      "main": ["less/*", "fonts/*"]
+      "main": ["scss/*", "fonts/*"]
     }
   }
 }

@@ -1,4 +1,4 @@
-{
+approach{
   "name": "gae-init",
   "author": "Panayiotis Lipiridis <lipiridis@gmail.com>",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "gulp-cssnano": "~2",
     "gulp-help": "~1",
     "gulp-if": "~2",
-    "gulp-less": "~3",
+    "gulp-sass": "~2",
     "gulp-livereload": "~3",
     "gulp-load-plugins": "~1",
     "gulp-plumber": "~1",

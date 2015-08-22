@@ -8,7 +8,7 @@ util = require '../util'
 gulp.task 'style', false, ->
   gulp.src config.style
   .pipe $.plumber errorHandler: util.onError
-  .pipe do $.less
+  .pipe do $.sass
   .pipe $.cssnano
     discardComments: removeAll: true
     zindex: false
@@ -20,7 +20,7 @@ gulp.task 'style:dev', false, ->
   gulp.src config.style
   .pipe $.plumber errorHandler: util.onError
   .pipe do $.sourcemaps.init
-  .pipe do $.less
+  .pipe do $.sass
   .pipe $.autoprefixer {map: true}
   .pipe do $.sourcemaps.write
   .pipe gulp.dest "#{paths.static.dev}/style"
