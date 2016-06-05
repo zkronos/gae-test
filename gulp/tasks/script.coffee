@@ -1,5 +1,6 @@
 gulp = require('gulp-help') require 'gulp'
-$ = do require 'gulp-load-plugins'
+$ = require('gulp-load-plugins')
+  rename: 'gulp-angular-templatecache': 'templates'
 config = require '../config'
 paths = require '../paths'
 util = require '../util'
@@ -7,10 +8,15 @@ util = require '../util'
 is_coffee = (file) ->
   return true if file.path.indexOf('.coffee') > 0
 
+is_html = (file) ->
+  return true if file.path.indexOf('.html') > 0
+
 gulp.task 'script', false, ->
   gulp.src config.script
   .pipe $.plumber errorHandler: util.onError
   .pipe $.if is_coffee, $.coffee()
+  .pipe $.if is_html, $.templates
+    module: 'mainApp'
   .pipe $.concat 'script.js'
   .pipe do $.uglify
   .pipe $.size {title: 'Minified scripts'}
@@ -22,6 +28,8 @@ gulp.task 'script:dev', false, ->
   .pipe $.plumber errorHandler: util.onError
   .pipe do $.sourcemaps.init
   .pipe $.if is_coffee, $.coffee()
+  .pipe $.if is_html, $.templates
+    module: 'mainApp'
   .pipe $.concat 'script.js'
   .pipe do $.sourcemaps.write
   .pipe gulp.dest "#{paths.static.dev}/script"
